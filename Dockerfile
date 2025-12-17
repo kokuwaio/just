@@ -8,10 +8,10 @@ ARG TARGETARCH
 RUN [ "$TARGETARCH" = amd64 ] && export ARCH=x86_64; \
 	[ "$TARGETARCH" = arm64 ] && export ARCH=aarch64; \
 	[ -z "${ARCH:-}" ] && echo "Unknown arch: $TARGETARCH" && exit 1; \
-	curl --fail --silent --location --remote-name-all "https://github.com/casey/just/releases/download/1.44.0/{just-1.44.0-$ARCH-unknown-linux-musl.tar.gz,SHA256SUMS}" && \
-	grep "just-1.44.0-$ARCH-unknown-linux-musl.tar.gz" SHA256SUMS | sha256sum -c -s && \
-	tar --gz --extract --file="just-1.44.0-$ARCH-unknown-linux-musl.tar.gz" just --directory=/tmp && \
-	rm -rf "just-1.44.0-$ARCH-unknown-linux-musl.tar.gz" SHA256SUMS && \
+	curl --fail --silent --location --remote-name-all "https://github.com/casey/just/releases/download/1.45.0/{just-1.45.0-$ARCH-unknown-linux-musl.tar.gz,SHA256SUMS}" && \
+	grep "just-1.45.0-$ARCH-unknown-linux-musl.tar.gz" SHA256SUMS | sha256sum -c -s && \
+	tar --gz --extract --file="just-1.45.0-$ARCH-unknown-linux-musl.tar.gz" just --directory=/tmp && \
+	rm -rf "just-1.45.0-$ARCH-unknown-linux-musl.tar.gz" SHA256SUMS && \
 	/tmp/just --version
 
 FROM docker.io/library/busybox:1.37.0-uclibc@sha256:48a4462d62e106f6ece30479d2b198714d33cab795b6b1ad365b3f2c04ad360a
