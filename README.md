@@ -23,7 +23,7 @@ Woodpecker:
 steps:
   just:
     depends_on: []
-    image: kokuwaio/just:1.45.0
+    image: kokuwaio/just:1.46.0
     when:
       event: pull_request
       path: [.justfile]
@@ -36,7 +36,7 @@ just:
   needs: []
   stage: lint
   image:
-    name: kokuwaio/just:1.45.0
+    name: kokuwaio/just:1.46.0
     entrypoint: [""]
   script: [/usr/bin/entrypoint.sh]
   rules:
@@ -47,7 +47,7 @@ just:
 CLI:
 
 ```bash
-docker run --rm --volume=$PWD:$PWD:ro --workdir=$PWD kokuwaio/just:1.45.0
+docker run --rm --volume=$PWD:$PWD:ro --workdir=$PWD kokuwaio/just:1.46.0
 ```
 
 ## Alternatives
