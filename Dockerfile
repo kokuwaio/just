@@ -2,7 +2,7 @@
 # but wget does not support tls verification (https://github.com/docker-library/busybox/issues/80)
 # and wget fails on arch arm64 (https://github.com/docker-library/busybox/issues/162#issuecomment-1773905855)
 
-FROM docker.io/curlimages/curl:8.17.0@sha256:935d9100e9ba842cdb060de42472c7ca90cfe9a7c96e4dacb55e79e560b3ff40 AS build
+FROM docker.io/curlimages/curl:8.18.0@sha256:5e058e1f726dd941b1db83ed6fad363e00d3aed1186cf9517b245fe111911921 AS build
 SHELL ["/bin/ash", "-u", "-e", "-o", "pipefail", "-c"]
 ARG TARGETARCH
 RUN [ "$TARGETARCH" = amd64 ] && export ARCH=x86_64; \
