@@ -16,6 +16,7 @@ steps:
           username: {from_secret: kokuwa_io_username}
           password: {from_secret: kokuwa_io_password}
       platform: [linux/amd64, linux/arm64]
+      source-date-epoch: 0
       annotation:
         org.opencontainers.image.title: Just WoodpeckerCI Plugin
         org.opencontainers.image.description: A WoodpeckerCI plugin for just to lint justfiles.

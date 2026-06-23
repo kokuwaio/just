@@ -2,7 +2,7 @@
 # but wget does not support tls verification (https://github.com/docker-library/busybox/issues/80)
 # and wget fails on arch arm64 (https://github.com/docker-library/busybox/issues/162#issuecomment-1773905855)
 
-FROM docker.io/curlimages/curl:8.20.0@sha256:b3f1fb2a51d923260350d21b8654bbc607164a987e2f7c84a0ac199a67df812a AS build
+FROM --platform=$BUILDPLATFORM docker.io/curlimages/curl:8.20.0@sha256:b3f1fb2a51d923260350d21b8654bbc607164a987e2f7c84a0ac199a67df812a AS build
 SHELL ["/bin/ash", "-u", "-e", "-o", "pipefail", "-c"]
 ARG TARGETARCH
 RUN [ "$TARGETARCH" = amd64 ] && export ARCH=x86_64; \
@@ -11,8 +11,7 @@ RUN [ "$TARGETARCH" = amd64 ] && export ARCH=x86_64; \
 	curl --fail --silent --location --remote-name-all "https://github.com/casey/just/releases/download/1.53.0/{just-1.53.0-$ARCH-unknown-linux-musl.tar.gz,SHA256SUMS}" && \
 	grep "just-1.53.0-$ARCH-unknown-linux-musl.tar.gz" SHA256SUMS | sha256sum -c -s && \
 	tar --gz --extract --file="just-1.53.0-$ARCH-unknown-linux-musl.tar.gz" just --directory=/tmp && \
-	rm -rf "just-1.53.0-$ARCH-unknown-linux-musl.tar.gz" SHA256SUMS && \
-	/tmp/just --version
+	rm -rf "just-1.53.0-$ARCH-unknown-linux-musl.tar.gz" SHA256SUMS
 
 FROM docker.io/library/busybox:1.38.0-uclibc@sha256:eea4ff5612c911abd1d0e9ed47ba642547b01c3490877d9c1bb5fd6346462da4
 COPY --chmod=555 --chown=0:0 --from=build /tmp/just /usr/bin/just

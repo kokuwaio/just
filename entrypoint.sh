@@ -7,7 +7,7 @@ if [ ! "$FILES" ]; then
 	exit 1
 fi
 for FILE in ${FILES}; do
-    COMMAND="just --unstable --fmt --check --color=always --justfile=$FILE"
+    COMMAND="just --fmt --check --color=always --justfile=$FILE"
     echo "$COMMAND"
     eval "$COMMAND"
 done
