@@ -13,7 +13,7 @@ RUN [ "$TARGETARCH" = amd64 ] && export ARCH=x86_64; \
 	tar --gz --extract --file="just-1.57.0-$ARCH-unknown-linux-musl.tar.gz" just --directory=/tmp && \
 	rm -rf "just-1.57.0-$ARCH-unknown-linux-musl.tar.gz" SHA256SUMS
 
-FROM docker.io/library/busybox:1.38.0-uclibc@sha256:9ab52da40e3e18c5d7b05757c32995fda6c9bf46a2e6a1070d45466231a99193
+FROM docker.io/library/busybox:1.38.0-uclibc@sha256:297dda192bda2157ddf40abb47a45a1090caff1864db9cfb9ce4b901ba318a3c
 COPY --chmod=555 --chown=0:0 --from=build /tmp/just /usr/bin/just
 COPY --chmod=555 --chown=0:0 entrypoint.sh /usr/bin/entrypoint.sh
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
